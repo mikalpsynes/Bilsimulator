@@ -1,0 +1,8 @@
+//
+// Created by mikal on 02.10.2025.
+//
+
+#ifndef BILSIMULATOR_INPUT_HPP
+#define BILSIMULATOR_INPUT_HPP
+
+#endif //BILSIMULATOR_INPUT_HPP
