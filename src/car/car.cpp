@@ -15,7 +15,7 @@ Car::Car() {
     carBody = std::make_shared<Mesh>(carBodyGeometry, carBodyMaterial);
 
     // Car Wheels
-    auto carWheelsGeometry = CylinderGeometry::create(0.5, 0.5, 0.3, 16);
+    auto carWheelsGeometry = CylinderGeometry::create(0.5, 0.5, 0.3, 32);
     auto carWheelsMaterial = MeshBasicMaterial::create();
     carWheelsMaterial->color = Color(0x000000);
 
@@ -36,16 +36,47 @@ Car::Car() {
         carWheel->rotation.z = math::PI / 2;
         carGroup->add(carWheel);
     }
-    carGroup->position.y = 0.85f;
+    carGroup->position.y = 0.85f;   // wheel radius (0.5) - wheel y (-0.3) + plane height (0.1) / 2
 }
+
 
 std::shared_ptr<threepp::Group> Car::getGroup() {
     return carGroup;
 }
 
 
-void Car::rotateWheels(const float degrees) const {
-    for (auto& wheel : carWheels) {
-        wheel->rotation.x += degrees;
+// chat gpt
+void Car::update(const float dt) {
+
+    carGroup->rotation.y += rotationSpeed_ * dt;
+
+    // Move car
+    const float distance = speed_ * dt;
+    const float carAngle = carGroup->rotation.y;
+
+    carGroup->position.x += std::sin(carAngle) * distance;
+    carGroup->position.z += std::cos(carAngle) * distance;
+
+    // Rotate wheels
+    if (speed_ != 0) {
+        for (auto& carWheel : carWheels) {
+            carWheel->rotation.x += distance;
+        }
     }
+}
+
+void Car::setSpeed(const float speed) {
+    speed_ = speed;
+}
+
+float Car::getSpeed() const {
+    return speed_;
+}
+
+void Car::setRotationSpeed(const float speed) {
+    rotationSpeed_ = speed;
+}
+
+float Car::getRotationSpeed() const {
+    return rotationSpeed_;
 }

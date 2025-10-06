@@ -16,13 +16,20 @@ class Car {
 public:
     Car();
     std::shared_ptr<threepp::Group> getGroup();
-    void rotateWheels(float degrees) const;
-    void drive(float speed);
+    void update(float dt);
+
+    void setSpeed(float speed);
+    float getSpeed() const;
+
+    void setRotationSpeed(float speed);
+    float getRotationSpeed() const;
 
 private:
     std::shared_ptr<threepp::Group> carGroup;
     std::shared_ptr<threepp::Mesh> carBody;
     std::vector<std::shared_ptr<threepp::Mesh>> carWheels;
+    float speed_ = 0;
+    float rotationSpeed_ = 0;
 };
 
 #endif //BILSIMULATOR_CAR_HPP

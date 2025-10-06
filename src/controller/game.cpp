@@ -1,5 +1,7 @@
 #include <threepp/threepp.hpp>
 #include "controller/game.hpp"
+
+#include "KeyController.hpp"
 #include "map/level.hpp"
 
 using namespace threepp;
@@ -17,6 +19,9 @@ Game::Game() {
     level.init(scene);
     scene->add(car.getGroup());
 
+    controller = std::make_shared<KeyController>(car);
+    canvas->addKeyListener(*controller);
+
 
     canvas->onWindowResize([&](const WindowSize& newSize){
         camera->aspect = newSize.aspect();
@@ -31,6 +36,7 @@ void Game::run() {
 
     canvas->animate([&] {
         controls.update();
+        car.update(0.016f);
         renderer->render(*scene, *camera);
     });
 }

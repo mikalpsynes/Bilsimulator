@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include "KeyController.hpp"
 #include "car/car.hpp"
 #include "map/level.hpp"
 
@@ -27,6 +28,7 @@ private:
 
     Level level;
     Car car;
+    std::shared_ptr<KeyController> controller;
 };
 
 #endif // BILSIMULATOR_GAME_HPP
