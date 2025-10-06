@@ -11,14 +11,14 @@ void Level::init(std::shared_ptr<threepp::Scene> scene) {
     auto planeMaterial = MeshBasicMaterial::create();
     planeMaterial->color = Color(0x228833); // grønn farge
 
-    auto plane = std::make_shared<threepp::Mesh>(planeGeometry, planeMaterial);
+    const auto plane = std::make_shared<Mesh>(planeGeometry, planeMaterial);
     scene->add(plane);
 
     auto doorGeometry = BoxGeometry::create(1, 2, 0.2);
     auto doorMaterial = MeshBasicMaterial::create();
     doorMaterial->color = Color(0x0000ff);
 
-    auto door = std::make_shared<threepp::Mesh>(doorGeometry, doorMaterial);
+    const auto door = std::make_shared<Mesh>(doorGeometry, doorMaterial);
     door->position = Vector3(0, 1, 5);
     scene->add(door);
 }

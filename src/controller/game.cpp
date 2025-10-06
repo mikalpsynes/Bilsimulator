@@ -15,6 +15,8 @@ Game::Game() {
     camera->position.z = 30;
 
     level.init(scene);
+    scene->add(car.getGroup());
+
 
     canvas->onWindowResize([&](const WindowSize& newSize){
         camera->aspect = newSize.aspect();

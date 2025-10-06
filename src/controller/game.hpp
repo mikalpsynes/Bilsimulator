@@ -2,6 +2,8 @@
 #define BILSIMULATOR_GAME_HPP
 
 #include <memory>
+
+#include "car/car.hpp"
 #include "map/level.hpp"
 
 // Forward declarations (slipper å inkludere tunge headers her)
@@ -24,6 +26,7 @@ private:
     std::shared_ptr<threepp::PerspectiveCamera> camera;
 
     Level level;
+    Car car;
 };
 
 #endif // BILSIMULATOR_GAME_HPP
