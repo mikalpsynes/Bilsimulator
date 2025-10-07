@@ -27,6 +27,7 @@ public:
 private:
     std::shared_ptr<threepp::Group> carGroup;
     std::shared_ptr<threepp::Mesh> carBody;
+    std::shared_ptr<threepp::Mesh> carBubble;
     std::vector<std::shared_ptr<threepp::Mesh>> carWheels;
     float speed_ = 0;
     float rotationSpeed_ = 0;
